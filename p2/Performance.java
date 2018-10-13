@@ -33,24 +33,14 @@ public class Performance extends Object {
 	}
 
 	/**
-	 * Add a prediction, accept integer parameters
+	 * Add a prediction
 	 * 
-	 * @param actual - the actual value
-	 * @param prediction - the predicted valie
+	 * @param actual - the index of actual class
+	 * @param prediction - the distribution over class labels predicted by a Classifier.getDistribution()
 	 */
-	public void add( int actual, int prediction ) {
-		// Use add() with double parameters instead
-		add((double) actual, (double) prediction);
-	}
-
-	/**
-	 * Add a prediction, accept double parameters
-	 * 
-	 * @param actual - the actual value
-	 * @param prediction - the predicted valie
-	 */
-	public void add( double actual, double prediction ) {
-		if( Double.compare(actual, prediction) == 0 ) corrects++;
+	public void add( int actual, double[] predictions ) {
+		// Check actual and predicted index of class label
+		if(actual == Utils.maxIndex(predictions)) corrects++;
 		n++;
 	}
 

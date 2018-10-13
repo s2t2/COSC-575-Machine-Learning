@@ -9,7 +9,9 @@ public class CategoricalEstimator extends Estimator {
 	/**
  	 * Default constructor.
  	 */
-	public CategoricalEstimator();
+	public CategoricalEstimator() {
+		this.dist = new ArrayList<Integer>();
+	}
 
 	/**
 	 * Constructor
@@ -17,9 +19,8 @@ public class CategoricalEstimator extends Estimator {
 	 * @param  k - number of categories
 	 */
 	public CategoricalEstimator( Integer k ) {
-		super();
 		this.dist = new ArrayList<Integer>(k);
-		for(int i = 0; i < this.dist.size(); i++) {
+		for(int i = 0; i < k; i++) {
 			this.dist.add(0);
 		}
 	}

@@ -3,6 +3,23 @@
  * Copyright (c) 2018 Georgetown University.  All Rights Reserved.
  */
 
-public class Utils;
+public class Utils {
 
-  public static int maxIndex( double[] p );
+	/**
+	 * Search for max value in an array and find its index
+	 * 
+	 * @param  p an array
+	 * @return   index of max value of p array
+	 */
+	public static int maxIndex( double[] p ) {
+		int maxIdx = 0;
+		double maxValue = -Double.MAX_VALUE;
+		for(int i = 0; i < p.length; i++) {
+			if ( p[i] > maxValue ) {
+				maxValue = p[i];
+				maxIdx = i;
+			}
+		}
+		return maxIdx;
+	}
+}

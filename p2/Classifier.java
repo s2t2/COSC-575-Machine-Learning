@@ -8,8 +8,17 @@ public abstract class Classifier extends Object implements OptionHandler {
 	/**
  	 * Default constructor.
  	 */
-	public Classifier();
+	public Classifier() {
 
+	}
+
+	/**
+	 * 
+	 * Constructor
+	 * 
+	 * @param  options   - options for contruction
+	 * @throws Exception - if options are invalid
+	 */
 	public Classifier( String[] options ) throws Exception {
 		this.setOptions(options);
 	}
@@ -26,6 +35,11 @@ public abstract class Classifier extends Object implements OptionHandler {
 
 	}
 	
+	/**
+	 * Construct string from this class object
+	 * 
+	 * @return a string representing this object
+	 */
 	public String toString() {
 		return "Classifier Object";
 	}

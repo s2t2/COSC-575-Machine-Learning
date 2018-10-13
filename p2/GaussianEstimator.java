@@ -12,7 +12,7 @@ public class GaussianEstimator extends Estimator;
 	 * Default constructor.
 	 */
 	public GaussianEstimator() {
-		super();
+
 	}
 
 	/**
