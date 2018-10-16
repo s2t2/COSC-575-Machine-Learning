@@ -3,7 +3,13 @@
  * Copyright (c) 2018 Georgetown University.  All Rights Reserved.
  */
 
-public class GaussianEstimator extends Estimator;
+/**
+ * Gaussian Estimator Class for NumericAttribute
+ *
+ * @author 	Kornraphop Kawintiranon (Ken) <kk1155@georgetown.edu>
+ * @since 	2018-10-15
+ */
+public class GaussianEstimator extends Estimator {
 	protected Double sum = 0.0;
 	protected Double sumsqr = 0.0;
 	protected final static Double oneOverSqrt2PI = 1.0/Math.sqrt(2.0*Math.PI);
@@ -54,3 +60,4 @@ public class GaussianEstimator extends Estimator;
 	public Double getProbability( Number x ) {
 		return (oneOverSqrt2PI * (1/Math.sqrt(getVariance()))) * Math.exp(-(Math.pow(x.doubleValue() - getMean(),2)/(2*getVariance())));
 	}
+}

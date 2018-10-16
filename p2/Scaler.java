@@ -3,6 +3,14 @@
  * Copyright (c) 2018 Georgetown University.  All Rights Reserved.
  */
 
+import java.util.ArrayList;
+
+/**
+ * Scaler Class for scale values of each example on given dataset
+ *
+ * @author 	Kornraphop Kawintiranon (Ken) <kk1155@georgetown.edu>
+ * @since 	2018-10-15
+ */
 public class Scaler extends Object {
 
 	/* attributes of the dataset */
@@ -70,7 +78,7 @@ public class Scaler extends Object {
 		DataSet scaledDataSet = new DataSet(attributes);
 		for(int i = 0; i < ds.getExamples().size(); i++) {
 			// Scale each example then add to a scaled DataSet object
-			Example scaledExample = scale(ds.getExamples().get(i))
+			Example scaledExample = scale(ds.getExamples().get(i));
 			scaledDataSet.add(scaledExample);
 		}
 		return scaledDataSet;

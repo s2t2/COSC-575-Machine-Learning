@@ -3,6 +3,12 @@
  * Copyright (c) 2018 Georgetown University.  All Rights Reserved.
  */
 
+/**
+ * Utilities Class containing some miscellaneous methods
+ *
+ * @author 	Kornraphop Kawintiranon (Ken) <kk1155@georgetown.edu>
+ * @since 	2018-10-15
+ */
 public class Utils {
 
 	/**

@@ -3,6 +3,15 @@
  * Copyright (c) 2018 Georgetown University.  All Rights Reserved.
  */
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
+/**
+ * K-nearest neightbor Classifier Class
+ *
+ * @author 	Kornraphop Kawintiranon (Ken) <kk1155@georgetown.edu>
+ * @since 	2018-10-15
+ */
 public class IBk extends Classifier implements Serializable, OptionHandler {
 	/* the training dataset */
 	protected DataSet dataset;
@@ -39,13 +48,13 @@ public class IBk extends Classifier implements Serializable, OptionHandler {
 	 * @throws Exception 
 	 */
 	public Performance classify( DataSet dataset ) throws Exception {
-		Performance performance = new Performance(dataSet.getAttributes());
-		int classIndex = dataSet.getAttributes().getClassIndex();
+		Performance performance = new Performance(dataset.getAttributes());
+		int classIndex = dataset.getAttributes().getClassIndex();
 
-		for(Example example : dataSet.getExamples()) {
-			int actual = example.get(classIndex);
-			double[] predictions = this.getDistribution();
-			performance.add(actual, predictions);
+		for(Example example : dataset.getExamples()) {
+			int actual = example.get( classIndex ).intValue();
+			double[] predictions = this.getDistribution( example );
+			performance.add( actual, predictions );
 		}
 
 		return performance;
@@ -100,7 +109,7 @@ public class IBk extends Classifier implements Serializable, OptionHandler {
 		}
 
 		// Find k-nearest distance between the given query and all examples in the dataset
-		for(Example example : dataset.getExamples()) {
+		for(Example example : this.dataset.getExamples()) {
 			double distance = 0.0;
 
 			// Compute distance between current example and all examples in the dataset
@@ -115,7 +124,7 @@ public class IBk extends Classifier implements Serializable, OptionHandler {
 					}
 
 					// If numeric attribute mismatched, increase distance by squared differences
-					else if( example.getAttributes().get(i) instanceof NumericAttribute ) {
+					else if( this.dataset.getAttributes().get(i) instanceof NumericAttribute ) {
 						distance += Math.pow( Math.abs(scaledQuery.get(i) - example.get(i)), 2 );
 					}
 				}
@@ -144,7 +153,7 @@ public class IBk extends Classifier implements Serializable, OptionHandler {
 			}
 		}
 
-		double[] classDistribution = new double[ example.getAttributes().size() ];
+		double[] classDistribution = new double[ this.dataset.getAttributes().getClassAttribute().size() ];
 
 		// Set distribution of predicted class labels given an example
 		for(int i = 0; i < kNearestDistances.length; i++) {
@@ -201,7 +210,7 @@ public class IBk extends Classifier implements Serializable, OptionHandler {
 	 * 
 	 * @param args - option arguments
 	 */
-	public static void main( String[] arge ) {
+	public static void main( String[] args ) {
 		try {
 			Evaluator evaluator = new Evaluator( new IBk(args), args );
 			Performance performace = evaluator.evaluate();

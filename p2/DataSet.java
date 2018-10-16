@@ -6,6 +6,8 @@
 import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * Implements a class for a data set for machine-learning methods.
@@ -196,6 +198,8 @@ public class DataSet {
 			System.out.println( e.getMessage() );
 			e.printStackTrace();
 		} // Catch
+
+		return null;
 	}
 	
 	/**
@@ -227,7 +231,7 @@ public class DataSet {
 			// Randomly assign testing set to examples with partition number
 			// We need to keep ratio of all partitions to be equally assigned
 			// Eg. partitions[i] = 3 means the examples[i] is in testing set for partition number 3
-			int maxExamplesEachPartition = Math.ceil(this.examples.size() / (double) folds).intValue();
+			int maxExamplesEachPartition = (int) Math.ceil( this.examples.size() / (double) folds );
 			// Eg. exampleNumberInPartitions[i] = 10 means partition number i-th has 10 examples
 			HashMap<Integer,Integer> exampleNumberInPartitions = new HashMap<Integer,Integer>();
 			for(int i = 0; i < folds; i++) {
@@ -240,20 +244,24 @@ public class DataSet {
 				availablePartitionNumbers.add(i);
 			}
 
+			// Available partition number size
+			int availablePartitionNumberSize = availablePartitionNumbers.size();
+
 			// Randomly assign partition index to partitions[i]
 			for(int i = 0; i < partitions.length; i++) {
-				int partitionIndex = availablePartitionNumbers[random.nextInt(availablePartitionNumbers.size())];
+				int partitionIndex = availablePartitionNumbers.get( random.nextInt( availablePartitionNumberSize ) );
 				partitions[i] = partitionIndex;
 
 				// Increment example number of the partition
-				int incremented = exampleNumberInPartitions.get(partitions[i]) + 1
-				exampleNumberInPartitions.put(partitions[i], incremented)
+				int incremented = exampleNumberInPartitions.get(partitions[i]) + 1;
+				exampleNumberInPartitions.put(partitions[i], incremented);
 				
 				// If the example number in a particular partition is exceeded the maximum
 				// Remove the paritition number from available partition numbers
 				if( exampleNumberInPartitions.get(partitions[i]) >= maxExamplesEachPartition ) {
 					int index = availablePartitionNumbers.indexOf(partitions[i]);
 					availablePartitionNumbers.remove(index);
+					availablePartitionNumberSize--;
 				}
 			}
 

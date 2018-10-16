@@ -3,6 +3,15 @@
  * Copyright (c) 2018 Georgetown University.  All Rights Reserved.
  */
 
+import java.util.Collections;
+import java.util.ArrayList;
+
+/**
+ * Categorical Estimator Class
+ *
+ * @author 	Kornraphop Kawintiranon (Ken) <kk1155@georgetown.edu>
+ * @since 	2018-10-15
+ */
 public class CategoricalEstimator extends Estimator {
 	protected ArrayList<Integer> dist;
 
@@ -44,7 +53,7 @@ public class CategoricalEstimator extends Estimator {
 	 * @return a number of probability
 	 */
 	public Double getProbability( Number x ) {
-		return (double) ( dist.get(x.intValue()) + 1 ) / (double) (n);
+		return (double) (this.dist.get(x.intValue()) + 0.1) / (double) (n + 0.1);
 	}
 
 }

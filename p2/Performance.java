@@ -3,6 +3,12 @@
  * Copyright (c) 2018 Georgetown University.  All Rights Reserved.
  */
 
+/**
+ * Performance Class
+ *
+ * @author 	Kornraphop Kawintiranon (Ken) <kk1155@georgetown.edu>
+ * @since 	2018-10-15
+ */
 public class Performance extends Object {
 	/** Attribute of dataset evaluated in this perofrmance object */
 	private Attributes attributes;
@@ -105,13 +111,13 @@ public class Performance extends Object {
 		// Number of fold
 		performanceString.append( "Number of fold: " + Integer.toString(this.m) + "\n" );
 		// Number of corrects
-		performanceString.append( "Corrects: " + Integer.toString(this.corrects) + "\n" )
+		performanceString.append( "Corrects: " + Integer.toString(this.corrects) + "\n" );
 		// Number of examples
-		performanceString.append( "Total examples: " + Integer.toString(this.n) + "\n" )
+		performanceString.append( "Total examples: " + Integer.toString(this.n) + "\n" );
 		// Accuracy
-		performanceString.append( "Accuracy: " + Double.toString(this.getAccuracy()) )
+		performanceString.append( "Accuracy: " + Double.toString(this.getAccuracy()) );
 		// SD of accuracy
-		performanceString.append( "(+-" + Double.toString(this.getSD()) + ")" )
+		performanceString.append( " (+-" + Double.toString(this.getSDAcc()) + ")" );
 
 		return performanceString.toString();
 	}

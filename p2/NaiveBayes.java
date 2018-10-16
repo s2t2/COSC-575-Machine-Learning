@@ -3,6 +3,15 @@
  * Copyright (c) 2018 Georgetown University.  All Rights Reserved.
  */
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
+/**
+ * Naive Bayes Classifier Class
+ *
+ * @author 	Kornraphop Kawintiranon (Ken) <kk1155@georgetown.edu>
+ * @since 	2018-10-15
+ */
 public class NaiveBayes extends Classifier implements Serializable, OptionHandler {
 	/* attributes of the dataset */
 	protected Attributes attributes;
@@ -40,8 +49,8 @@ public class NaiveBayes extends Classifier implements Serializable, OptionHandle
 		int classIndex = dataSet.getAttributes().getClassIndex();
 
 		for(Example example : dataSet.getExamples()) {
-			int actual = example.get(classIndex);
-			double[] predictions = this.getDistribution();
+			int actual = example.get(classIndex).intValue();
+			double[] predictions = this.getDistribution(example);
 			performance.add(actual, predictions);
 		}
 
@@ -64,7 +73,7 @@ public class NaiveBayes extends Classifier implements Serializable, OptionHandle
 	 * 
 	 * @return - a NaiveBayes object with untrained
 	 */
-	public public Classifier clone() {
+	public Classifier clone() {
 		return new NaiveBayes();
 	}
 
@@ -81,11 +90,11 @@ public class NaiveBayes extends Classifier implements Serializable, OptionHandle
 
 		// All classes
 		for(int i = 0; i < this.classConditionalDistributions.size(); i++) {
-			double probProduct = 1.0;
+			probProduct = 1.0;
 
 			// All attributes
 			for(int j = 0; j < this.classConditionalDistributions.get(i).size(); j++) {
-				probProduct *= this.classConditionalDistributions.get(j).getProbability(example.get(j));
+				probProduct *= this.classConditionalDistributions.get(i).get(j).getProbability(example.get(j));
 			}
 
 			classProbDist[i] = probProduct * this.classDistribution.getProbability(i);
@@ -129,7 +138,7 @@ public class NaiveBayes extends Classifier implements Serializable, OptionHandle
 
 				// Nominal
 				else {
-					this.classConditionalDistributions.get(i).add(new CategoricalEstimator(this.attributes.get(i).size()));
+					this.classConditionalDistributions.get(i).add(new CategoricalEstimator(this.attributes.get(j).size()));
 				}
 			}
 		}
@@ -161,7 +170,7 @@ public class NaiveBayes extends Classifier implements Serializable, OptionHandle
 	 */
 	public static void main(String[] args) {
 		try {
-			Evaluator evaluator = new Evaluator(new NaiveBayes(), args);
+			Evaluator evaluator = new Evaluator(new NaiveBayes(args), args);
 			Performance performace = evaluator.evaluate();
 			System.out.println(performace);
 		} // try

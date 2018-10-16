@@ -53,7 +53,7 @@ public class TrainTestSets implements OptionHandler {
 	 * @return a training set
 	 */
 	public DataSet getTrainingSet() {
-		return train;
+		return this.train;
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class TrainTestSets implements OptionHandler {
 	 * @return a testing set
 	 */
 	public DataSet getTestingSet() {
-		return test;
+		return this.test;
 	}
 
 	/**

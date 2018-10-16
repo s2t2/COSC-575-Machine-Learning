@@ -3,6 +3,12 @@
  * Copyright (c) 2018 Georgetown University.  All Rights Reserved.
  */
 
+/**
+ * Abstract class for a classifier
+ *
+ * @author 	Kornraphop Kawintiranon (Ken) <kk1155@georgetown.edu>
+ * @since 	2018-10-15
+ */
 public abstract class Classifier extends Object implements OptionHandler {
 	
 	/**
