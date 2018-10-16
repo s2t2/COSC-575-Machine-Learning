@@ -17,6 +17,13 @@ public class Evaluator implements OptionHandler {
 
 	/**
 	 * Default constructor
+	 */
+	public Evaluator() throws Exception {
+
+	}
+
+	/**
+	 * Constructor with specific classifier and option arguments
 	 * 
 	 * @param  classifier - set classifier
 	 * @param  options - options from command line

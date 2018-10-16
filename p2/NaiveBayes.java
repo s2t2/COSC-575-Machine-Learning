@@ -59,7 +59,14 @@ public class NaiveBayes extends Classifier implements Serializable, OptionHandle
 		return Utils.maxIndex(this.getDistribution(example));
 	}
 
-	public public Classifier clone();
+	/**
+	 * Clone this classifier but untrained
+	 * 
+	 * @return - a NaiveBayes object with untrained
+	 */
+	public public Classifier clone() {
+		return new NaiveBayes();
+	}
 
 	/**
 	 * Get distribution of predicted class labels given an example
@@ -95,6 +102,14 @@ public class NaiveBayes extends Classifier implements Serializable, OptionHandle
 
 	}
 
+	/**
+	 * Train this classifier by given dataset
+	 * This train method will create a number of estimators and feed them with examples
+	 * As a result, the classDistribution and classConditionalDistributions are constructed
+	 * 
+	 * @param  dataset   - a given dataset
+	 * @throws Exception 
+	 */
 	public void train( DataSet dataset ) throws Exception {
 		this.attributes = dataset.getAttributes();
 		this.classDistribution = new CategoricalEstimator(this.attributes.size());
@@ -142,13 +157,13 @@ public class NaiveBayes extends Classifier implements Serializable, OptionHandle
 	/**
 	 * Main function for test this class
 	 * 
-	 * @param args - arguments for creating an evaluator
+	 * @param args - option arguments
 	 */
 	public static void main(String[] args) {
 		try {
 			Evaluator evaluator = new Evaluator(new NaiveBayes(), args);
 			Performance performace = evaluator.evaluate();
-			System.out.println(performace.toString());
+			System.out.println(performace);
 		} // try
 		catch (Exception e) {
 			System.out.println(e.getMessage());
