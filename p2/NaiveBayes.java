@@ -107,7 +107,7 @@ public class NaiveBayes extends Classifier implements Serializable, OptionHandle
 	 * Option setting for this class
 	 * @param options - option list string
 	 */
-	public void setOptions( String[] options ) {
+	public void setOptions( String[] options ) throws Exception {
 
 	}
 

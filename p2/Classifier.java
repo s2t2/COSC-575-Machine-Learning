@@ -37,7 +37,7 @@ public abstract class Classifier extends Object implements OptionHandler {
 	
 	abstract public double[] getDistribution( Example example ) throws Exception;
 	
-	public void setOptions( String[] options ) {
+	public void setOptions( String[] options ) throws Exception {
 
 	}
 	

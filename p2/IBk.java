@@ -95,7 +95,7 @@ public class IBk extends Classifier implements Serializable, OptionHandler {
 		// Scale the given example
 		Example scaledQuery = null; // Initial by assuming that it is nominal attribute
 		if( this.dataset.getHasNumericAttributes() ) {
-			scaledQuery = scaler.scale(query);
+			scaledQuery = this.scaler.scale(query);
 		}
 		else {
 			scaledQuery = query;
@@ -124,8 +124,8 @@ public class IBk extends Classifier implements Serializable, OptionHandler {
 					}
 
 					// If numeric attribute mismatched, increase distance by squared differences
-					else if( this.dataset.getAttributes().get(i) instanceof NumericAttribute ) {
-						distance += Math.pow( Math.abs(scaledQuery.get(i) - example.get(i)), 2 );
+					else {
+						distance += Math.pow( scaledQuery.get(i) - example.get(i), 2 );
 					}
 				}
 			}
@@ -177,7 +177,7 @@ public class IBk extends Classifier implements Serializable, OptionHandler {
 	 * 
 	 * @param args[] - option arguments
 	 */
-	public void setOptions( String args[] ) {
+	public void setOptions( String args[] ) throws Exception {
 		for( int i = 0; i < args.length; i++ ) {
 			if( args[i].equals("-k") && args.length > i+1 ) {
 				this.setK( Integer.parseInt(args[i+1]) );

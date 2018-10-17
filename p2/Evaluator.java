@@ -74,10 +74,12 @@ public class Evaluator implements OptionHandler {
 			tts.getTrainingSet().setFolds(folds); // Do partitioning
 			for(int i = 0; i < folds; i++) {
 				TrainTestSets partitionedDataset = tts.getTrainingSet().getCVSets(i);
+				// Clone
+				Classifier clf = this.classifier.clone();
 				// Train
-				classifier.train( partitionedDataset.getTrainingSet() );
+				clf.train( partitionedDataset.getTrainingSet() );
 				// Test
-				Performance testPerformance = classifier.classify( partitionedDataset.getTestingSet() );
+				Performance testPerformance = clf.classify( partitionedDataset.getTestingSet() );
 				performance.add( testPerformance );
 			}
 		}
@@ -104,6 +106,8 @@ public class Evaluator implements OptionHandler {
 		for(int i = 0; i < args.length; i++) {
 			if(args[i].equals("-x") && args.length > i+1)
 				this.folds = Integer.parseInt( args[i+1] );
+			if(args[i].equals("-s") && args.length > i+1)
+				this.setSeed( Long.parseLong(args[i+1]) );
 		}
 	}
 

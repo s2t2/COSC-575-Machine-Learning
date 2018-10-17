@@ -48,7 +48,7 @@ public class GaussianEstimator extends Estimator {
 	 * @return a number indicating variance
 	 */
 	public Double getVariance() {
-		return (sumsqr - (Math.pow(sum, 2)/n)) / (double) (n - 1);
+		return (sumsqr - (Math.pow(sum, 2) / (n*1.0) )) / (double) (n - 1);
 	}
 
 	/**
@@ -58,6 +58,6 @@ public class GaussianEstimator extends Estimator {
 	 * @return - probability of this estimator
 	 */
 	public Double getProbability( Number x ) {
-		return (oneOverSqrt2PI * (1.0/Math.sqrt(getVariance()))) * Math.exp(-(Math.pow(x.doubleValue() - getMean(),2)/(2*getVariance())));
+		return (oneOverSqrt2PI * (1.0/Math.sqrt(getVariance()))) * Math.exp( -1.0 * (Math.pow(x.doubleValue() - getMean(),2) / (2*getVariance()) ) );
 	}
 }

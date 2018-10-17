@@ -19,7 +19,7 @@ public class NumericAttribute extends Attribute {
 	 * Default constructor.
 	 */
 	public NumericAttribute() {
-		super();
+
 	}
 
 	/**

@@ -35,7 +35,7 @@ public class Performance extends Object {
 	 */
 	public Performance( Attributes attributes ) throws Exception {
 		this.attributes = attributes;
-	  	c = attributes.getClassAttribute().size(); // Set number of class labels
+	  	this.c = this.attributes.getClassAttribute().size(); // Set number of class labels
 	}
 
 	/**
@@ -46,8 +46,8 @@ public class Performance extends Object {
 	 */
 	public void add( int actual, double[] predictions ) {
 		// Check actual and predicted index of class label
-		if(actual == Utils.maxIndex(predictions)) corrects++;
-		n++;
+		if(actual == Utils.maxIndex(predictions)) this.corrects++;
+		this.n++;
 	}
 
 	/**
@@ -73,11 +73,11 @@ public class Performance extends Object {
 		double accuracy;
 
 		// Simple evaluation
-		if( m < 2 )
-			accuracy = corrects/(double) n;
+		if( this.m < 2 )
+			accuracy = this.corrects / (double) this.n;
 		// K-Fold cross validaiton
 		else
-			accuracy = sum / m;
+			accuracy = this.sum / this.m;
 
 		return accuracy;
 	}
@@ -91,11 +91,11 @@ public class Performance extends Object {
 		double variance;
 
 		// Simple evaluation
-		if( m < 2 )
-			variance = (sumSqr - (Math.pow(sum, 2)/n)) / (n - 1);
+		if( this.m < 2 )
+			variance = (this.sumSqr - (Math.pow(this.sum, 2)/this.n)) / (this.n - 1);
 		// K-Fold cross validaiton
 		else
-			variance = (sumSqr - (Math.pow(sum, 2)/m)) / (m - 1);
+			variance = (this.sumSqr - (Math.pow(this.sum, 2)/this.m)) / (this.m - 1);
 		
 		return Math.sqrt(variance);
 	}

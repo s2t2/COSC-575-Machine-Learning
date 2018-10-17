@@ -52,7 +52,7 @@ public class Scaler extends Object {
 				double maxValue = -Double.MAX_VALUE;
 
 				// Run through all examples for each attribute
-				for(int j = 0; j < examples.size(); i++) {
+				for(int j = 0; j < examples.size(); j++) {
 					double value = examples.get(j).get(i);	// j-th example, i-th attribute
 					if(value < minValue) {
 						minValue = value;

@@ -20,7 +20,9 @@ public class NominalAttribute extends Attribute {
 	/**
 	 * Default constructor.
 	 */
-	public NominalAttribute() { super(); }
+	public NominalAttribute() {
+		
+	}
 
 	/**
 	 * Explicit constructor. Creates a nominal attribute with the specified name.
