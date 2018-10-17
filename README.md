@@ -4,3 +4,4 @@ Projects and materials from *COSC-575 Machine Learning* class at *Georgetown Uni
 ## Projects ##
 * Project 1 [Link](http://people.cs.georgetown.edu/~maloof/cosc575.f18/p1.html)
 * Project 2 [Link](http://people.cs.georgetown.edu/~maloof/cosc575.f18/p2.html)
+* Project 3 [Link](http://people.cs.georgetown.edu/~maloof/cosc575.f18/p3.html)
