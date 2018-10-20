@@ -1,0 +1,3 @@
+public class Utils;
+  ...
+  public static double u25( int n, int x );
